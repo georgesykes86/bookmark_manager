@@ -1,6 +1,9 @@
+
 class Bookmark
 
   def self.all
-    ['http://bbc.co.uk', 'http://makersacademy.com', 'http://google.com']
+    con = PG.connect :dbname => 'bookmark_manager', :user => ENV['USER']
+    rs = con.exec "SELECT url FROM bookmarks"
+    rs.values
   end
 end
